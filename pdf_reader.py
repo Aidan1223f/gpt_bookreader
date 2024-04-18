@@ -16,36 +16,6 @@ great_gatsby = r.text
 # remove unwanted new line and tab characters from the text
 for char in ["\n", "\r", "\t"]:
     great_gatsby = great_gatsby.replace(char, " ")
-    
-def tokenize_text(text: str):
-    
-    # lowercase the text
-    text = text.lower()
-    
-    # remove punctuation and stopwords from text
-    english_stop_words = set(stopwords.words('english'))
-    text = re.sub(r"[^\w\s]", "", text)
-
-    text = ' '.join([word for word in text.split() if word in english_stop_words])
-
-    return text
-
-tokenized_text = tokenize_text(text = great_gatsby)
-
-def lemmatize_tokens(text):
-    
-    # initiate lemmatizer
-    lemmatizer = WordNetLemmatizer()
-    
-    # lemmatize tokens
-    lemmatizer = WordNetLemmatizer()
-    lemmatized_tokens = [lemmatizer.lemmatize(word) for word in text]
-    
-    # return your lemmatized tokens
-    return lemmatized_tokens
-
-lemmatized_tokens = lemmatize_tokens(tokenized_text)
-
 
 def chunk_words(file, chunk_size=4000, overlap=1000):
     chunks = []
@@ -61,8 +31,4 @@ def chunk_words(file, chunk_size=4000, overlap=1000):
     return chunks
 
 
-
-
-
-        
-   
+# print(tokenized_text)
