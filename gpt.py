@@ -6,7 +6,7 @@ client = OpenAI(api_key="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")
 
 
 def get_keywords(question):
-    prompt = f"""I want to find the answer to the following question from a txt file. Please provide me with 10 to 15 keywords that I can use to find the information from the txt file.
+    prompt = f"""please provide me with 10 keywords from the question that will help find an answer.
     only one word per keyword. only use lowercase
     {question}"""
 
@@ -21,7 +21,7 @@ def get_keywords(question):
         functions=[
             {
                 "name" : "list_keywords",
-                "description" : "use this function to give the user a list of keywords",
+                "description" : "gives user list of keywords",
                 "parameters" :{
                     "type":"object",
                     "properties" : {
@@ -73,6 +73,8 @@ Based on the above information, what is the answer to this question?
                 "content": prompt,
             }
         ],
+        temperature=0.5
+        top_p=0.5
         functions=[
             {
                 "name": "give_response",
